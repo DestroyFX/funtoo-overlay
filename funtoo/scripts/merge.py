@@ -281,6 +281,7 @@ class Minify(MergeStep):
 
 # CHANGE TREE CONFIGURATION BELOW:
 
+branch = "funtoo.org"
 pull = True
 
 parser = argparse.ArgumentParser(description="merge.py checkouts funtoo.org's Gentoo tree, some developers overlays and the funtoo-overlay, and merges them to create Funtoo's unified Portage tree.")
@@ -292,8 +293,9 @@ args = parser.parse_args()
 
 if args.nopush:
 	push = False
+	sys.argv.remove("nopush")
 else:
-	push = "origin funtoo.org"
+	push = "origin %s" % branch
 
 dest = args.destination
 if dest[0] != "/":
